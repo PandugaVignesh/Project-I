@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dropdown">
+            <div class="dropdown-text" onclick="toggleDropdown()">
+                <span>Everything</span>
+                <i class="fas fa-solid fa-chevron-down"></i>
+            </div>
+            <ul id="list" class="dropdown-list">
+                <li class="dropdown-list-item" onclick="selectItem(this)">Everything</li>
+                <li class="dropdown-list-item" onclick="selectItem(this)">Software Development</li>
+                <li class="dropdown-list-item" onclick="selectItem(this)">Web Development</li>
+                <li class="dropdown-list-item" onclick="selectItem(this)">Data Analyst</li>
+                <li class="dropdown-list-item" onclick="selectItem(this)">IT Consultant</li>
+                <li class="dropdown-list-item" onclick="selectItem(this)">Network Administrator</li>
+            </ul>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search Anything" class="search-input" id="searchInput">
+            <i class="fas fa-solid fa-magnifying-glass"></i>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById('list').classList.toggle('show');
+            document.querySelector('.dropdown-text i').classList.toggle('rotate');
+        }
+
+        function selectItem(element) {
+            document.querySelector('.dropdown-text span').textContent = element.textContent;
+            document.getElementById('searchInput').placeholder = `Search in ${element.textContent}`;
+            toggleDropdown();
+        }
+
+        document.addEventListener('click', function(event) {
+            const isClickInside = document.querySelector('.dropdown').contains(event.target);
+            if (!isClickInside) {
+                document.getElementById('list').classList.remove('show');
+                document.querySelector('.dropdown-text i').classList.remove('rotate');
+            }
+        });
+    </script>
+</body>
+</html>
